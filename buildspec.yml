@@ -21,7 +21,7 @@ phases:
   post_build:
     commands:
       - echo "Uploading artifacts to S3..."
-      - aws s3 cp build_output/ s3://cb-bucket111/build-artifacts/ --recursive
+      - aws s3 cp build_output/ s3://adv-devops-object/build-artifacts/ --recursive
       - pwd
       - ls
 
