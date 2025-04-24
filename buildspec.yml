@@ -15,9 +15,16 @@ phases:
     commands:
       - echo "we are in the build block"
       - echo "we will run some tests"
-      - grep -Fq "Sahil" index.html
-      - grep -Fq "Komal" index.html
+      - mkdir -p build_output
+      - grep -Fq "Congratulations" index.html
 
   post_build:
     commands:
-      - echo "we are in the post build phase"
+      - echo "Uploading artifacts to S3..."
+      - aws s3 cp build_output/ s3://cb-bucket111/build-artifacts/ --recursive
+      - pwd
+      - ls
+
+artifacts:
+  files:
+    - '**/*'
